@@ -219,7 +219,7 @@
 	text-decoration: underline
 }
 a.readmore {
-	background: #fd8a61;
+	background: #333;
 	color: #fff;
 	padding: 5px 10px;
 	float: right;
@@ -234,13 +234,10 @@ a.readmore {
 	margin: 30px auto
 }
 .dttext {
-	width: 60%;
+	width: 70%;
 	border-bottom: #838484 1px solid;
-	margin-left: 40px;
 }
-.dttext ul {
-	padding: 20px 20px 20px 80px
-}
+
 .xwpic {
 	width: 28%;
 	overflow: hidden;
@@ -268,7 +265,6 @@ a.readmore {
 	overflow: hidden
 }
 .dtxw li:first-child::before {
-	content: "01";
 	position: absolute;
 	left: 40px;
 	top: 40px;
@@ -276,7 +272,6 @@ a.readmore {
 	color: #aeaeae
 }
 .dtxw li:nth-child(2)::before {
-	content: "02";
 	position: absolute;
 	left: 40px;
 	top: 40px;
@@ -284,31 +279,6 @@ a.readmore {
 	color: #aeaeae
 }
 .dtxw li:nth-child(3)::before {
-	content: "03";
-	position: absolute;
-	left: 40px;
-	top: 40px;
-	font-size: 40px;
-	color: #aeaeae
-}
-.dtxw li:nth-child(4)::before {
-	content: "04";
-	position: absolute;
-	left: 40px;
-	top: 40px;
-	font-size: 40px;
-	color: #aeaeae
-}
-.dtxw li:nth-child(5)::before {
-	content: "05";
-	position: absolute;
-	left: 40px;
-	top: 40px;
-	font-size: 40px;
-	color: #aeaeae
-}
-.dtxw li:nth-child(6)::before {
-	content: "06";
 	position: absolute;
 	left: 40px;
 	top: 40px;

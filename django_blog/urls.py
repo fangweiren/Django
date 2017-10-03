@@ -14,9 +14,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from blog.views import index
+from blog.views import index, post, post1
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-	url(r'^$', index),
+	url(r'^$', index, ),
+	url(r'^post/$', post, name='posts-url'),
+	url(r'^post/(\d+)/$', post1, name='post-url'),
 ]

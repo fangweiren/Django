@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 DATABASES = {
     'default': {
 		'ENGINE':'django.db.backends.postgresql_psycopg2',
-		'NAME':'djblog',#数据库名字
-		'USER':'myblog',#登录用户名
+		'NAME':'djblog',
+		'USER':'myblog',
 		'PASSWORD':'123456',
-		'HOST':'127.0.0.1',#数据库IP地址
+		'HOST':'127.0.0.1',
 		'PORT':'5432',
     }
 }
@@ -92,7 +92,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'zh-CN'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
