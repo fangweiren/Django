@@ -70,6 +70,10 @@ a:hover {
 	background: url(../images/footside.jpg) bottom center no-repeat;
 	overflow: hidden;
 }
+.flex-center {
+	background: url(../images/footside.jpg) bottom center no-repeat;
+}
+
 header {
 	width: 100%;
 	background: url(../images/yuanshan.jpg) right bottom no-repeat
@@ -83,7 +87,6 @@ header {
 	margin: auto;
 }
 .logo {
-	padding: 50px 0 20px 20px;
 	font-size: 26px;
 	font-family: "Î¢ÈíÑÅºÚ", sans-serif;
 	color: #333;

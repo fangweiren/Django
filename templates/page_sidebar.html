@@ -1,0 +1,136 @@
+{% load staticfiles %}
+{% load blog_tags %}
+
+<div class="r_box f_r">
+  {% if user.is_authenticated %}
+    <p style="text-align: center;"><button class="btn btn-default"><a href="{% url 'logout' %}?next=/">注销登录</a></button></p>
+	<br/>
+	<div class="ph">
+      <h3 class="tit">关于我</h3>
+      <ul class="touxiang" >
+	    <li><a href="{% url 'about-url' user.username %}"><img src="{{ profile.user_avatar.url }}"></a></li>
+		<br/>
+		<li style="font-size:20px; font-family: 微软雅黑"><a href="{% url 'about-url' user.username %}">{{ user.username }}</a></li>
+		<li style="font-size:20px; font-family: 微软雅黑"><a href="{% url 'about-url' user.username %}">{{ user.user_avatar.url }}</a></li>
+		<br/>
+      </ul>
+    </div>
+  {% else %}
+    <p style="color: red; text-align: center; font-size: 14px;">你还没有登录，请
+	<button class="btn btn-default"><a href="{% url 'login' %}?next={{ request.path }}">登录</a></button>
+	或者
+	<button class="btn btn-default"><a href="{% url 'register-url' %}?next=/users/login/">注册</a></button>
+	</p><br/><br/>
+  {% endif %}
+  <!--
+	<div class="tit01">
+      <h3 class="tit">关注我</h3>
+      <div class="gzwm">
+        <ul>
+		{% if user.is_authenticated %}
+          <li><a class="email" href="#" target="_blank">我的电话</a></li>
+          <li><a class="qq" href="{% url 'about-url' user.username %}">我的邮箱</a></li>
+		{% endif %}
+          <li><a class="tel" href="#" target="_blank">我的QQ</a></li>
+          <li><a class="prize" href="#">个人奖项</a></li>
+        </ul>
+      </div>
+    </div>
+  -->
+  <!--tit01 end-->
+	  
+	<div class="ph">
+      <h3 class="tit">分类</h3>
+	  {% get_categories as category_list %}
+      <ul class="rank" >
+	  {% for category in category_list %}
+	    {% if user.is_authenticated %}
+        <li class="iconfont icon-fenlei">
+		  <a href="{% url 'user_category-url' user.username category.id %}" 
+			style="font-size: 14px;">&emsp;{{ category.name }} <span class="post-count">({{ category.num_posts }})</span></a>
+		</li>
+		{% else %}
+		<li class="iconfont icon-fenlei">
+		  <a href="{% url 'category-url' category.id %}" 
+			style="font-size: 14px;">&emsp;{{ category.name }} <span class="post-count">({{ category.num_posts }})</span></a>
+		</li>
+		{% endif %}
+	  {% empty %}
+		<h3>暂无分类！</h3>
+	  {% endfor %}
+      </ul>
+    </div>
+	
+    <div class="ph">
+      <h3 class="tit">归档</h3>
+	  {% archives as date_list %}
+	  <ul class="rank">
+	  {% for date in date_list %}
+		{% if user.is_authenticated %}
+        <li class="iconfont icon-guidang">
+		  <a href="{% url 'user_archives-url' user.username date.year date.month %}" 
+			style="font-size: 14px;">&emsp;{{ date.year }} 年 {{ date.month }} 月 {{ date.num_posts }}</a>
+		</li>
+		{% else %}
+		<li class="iconfont icon-guidang">
+		  <a href="{% url 'archives-url' date.year date.month %}" 
+			style="font-size: 14px;">&emsp;{{ date.year }} 年 {{ date.month }} 月 {{ date.num_posts }}</a>
+		</li>
+		{% endif %}
+	  {% empty %}
+		<h3>暂无归档！</h3>
+	  {% endfor %}
+      </ul>
+    </div>
+	
+	<div class="ph">
+      <h3 class="tit iconfont icon-yingyongyun_biaoqian">&emsp;标签</h3>
+	  {% get_tag as tag_list %}
+      <ul class='rank'>
+	  {% for tag in tag_list %}
+		{% if user.is_authenticated %}
+        <span><a href="{% url 'user_tag-url' user.username tag.id %}" style="font-size: 14px;">{{ tag.name }} <span class="post-count">&emsp;</span></a></span>
+		{% else %}
+		<span><a href="{% url 'tag-url' tag.id %}" style="font-size: 14px;">{{ tag.name }} <span class="post-count">&emsp;</span></a></span>
+		{% endif %}
+	  {% empty %}
+		<h3>暂无标签！</h3>
+	  {% endfor %}
+      </ul>
+    </div>
+	
+    <div class="tuwen">
+      <h3 class="tit">图文推荐</h3>
+      <ul>
+        <li><a href="/"><img src="{% static "images/01.jpg" %}"><b>住在手机里的朋友</b></a>
+        <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
+        </li>
+        <li><a href="/"><img src="{% static "images/02.jpg" %}"><b>教你怎样用欠费手机拨打电话</b></a>
+          <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
+        </li>
+        <li><a href="/" title="手机的16个惊人小秘密，据说99.999%的人都不知"><img src="{% static "images/03.jpg" %}"><b>手机的16个惊人小秘密，据说...</b></a>
+          <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
+        </li>
+      </ul>
+    </div>
+	
+    <div class="ph">
+      <h3 class="tit">阅读排行</h3>
+	  {% get_recent_posts as recent_post_list %}
+      <ul class="rank">
+	  {% for post in recent_post_list %}
+        <li class="iconfont icon-dayuhao"><a href="{% url 'post-url' post.id %}" title={{ post.title }} style="font-size: 14px;"> {{ post.title }}</a></li>
+	  {% empty %}
+	    <h3>暂无文章！</h3>
+	  {% endfor %}
+      </ul>
+    </div>
+	
+	<div class="ph">
+	  <a href="{% url 'rss' %}"><h3 class="tit iconfont icon-rss"> RSS 订阅</h3></a>
+	</div>
+	  
+    <div class="ad"><img src="{% static "images/03.jpg" %}"></div>	
+
+</div>
+  <!-- container代码 结束 -->

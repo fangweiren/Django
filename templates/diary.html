@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<body>
+  {% block title %} Nancy - 日记 {% endblock %}
+
+  {% block content %}
+  
+  <div class="jztop"></div>
+  
+  <div class="container">
+    <div class="bloglist f_l">
+	  <!-- <h3 style="text-align:center; font-size:20px; font-family:微软雅黑; font-weight:bold;">日记</h3>-->
+	  
+	    {% for diary in diary_list %}
+		  <div style="font-size:16px; margin:10px 0 10px 0;">
+		    <p style="font-size:13px;">{{ diary.author }}&emsp;{{ diary.create_time }}</p>
+			<h3 style="margin:8px 0 20px 0;">{{ diary.body }}</h3>
+		  </div>
+		{% empty %}
+		<h3>暂无日记！</h3>
+		{% endfor %}
+	  
+	  {% if count > 30 %}
+	    {% include "pagination.html" %}
+	  {% endif %}
+	  
+    </div>
+	
+	{% include "page_sidebar.html" %}
+	
+  </div>
+  
+  <div class="jzend"></div>
+  {% endblock %}
+
+</body>

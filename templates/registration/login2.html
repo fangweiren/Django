@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<body>
+
+{% block title %} Nancy - login {% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="con_content">
+      <div class="login_box">
+        <h3 class='login1'>登录</h3>
+        <div class="login_1">
+          <form class="form" action="/about/" method="post">
+              {% csrf_token %}
+              {{ form.non_field_errors }}
+              {% for field in form %}
+                  {{ field.label_tag }}
+                  {{ field }}
+                  {{ field.errors }}
+                  {% if field.help_text %}
+                      <p class="help text-small text-muted">{{ field.help_text|safe }}</p>
+                  {% endif %}
+              {% endfor %}
+              <button type="submit" class="btn btn-primary btn-block">登录</button>
+          </form>
+        <!--    <div class="nextinfos">
+      <p>上一篇：<a href="/">区中医医院开展志愿服务活动</a></p>
+      <p>下一篇：<a href="/">广安区批准“单独两孩”500例</a></p>
+    </div>--> 
+        <!-- 可用于内容模板 --> 
+        
+        <!-- container代码 结束 --> 
+      </div>
+    </div>
+    <div class="blank"></div>
+  </div>
+  <!-- container代码 结束 -->
+{% endblock %}  
+</body>
+</html>

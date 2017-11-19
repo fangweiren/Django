@@ -1,0 +1,67 @@
+{% load staticfiles %}
+  <header>
+    <div class="headtop"></div>
+    <div class="contenttop">
+      <div class="logo f_l"><a href='/'><img src="{% static "images/logo2.png" %}"></a></div>
+	  <div class="f_l" style="font-size:20px; margin: 80px 0 0 0; font-family: 微软雅黑; color: black;">不为成仙,只为在这红尘中等你回来。</div>
+      <div class="search f_r">
+        <form action="{% url 'haystack_search' %}" method="get" name="searchform" id="searchform">
+          <input name="q" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+          <input name="show" value="title" type="hidden">
+          <input name="tempid" value="1" type="hidden">
+          <input name="tbname" value="news" type="hidden">
+          <input name="Submit" class="input_submit" value="搜索" type="submit">
+        </form>
+      </div>
+      <div class="blank"></div>
+      <nav>
+        <div class="navigation">
+          <ul class="menu">
+            <li><a href="/">网站首页</a></li>
+			{% if user.is_authenticated %}
+			<li><a href="{% url 'user_category-url' user.username 2 %}">技术文章</a></li>
+            <li><a href="{% url 'user_diaries-url' user.username %}">心情日记</a>
+              <ul>
+                <li><a href="#">个人日记</a></li>
+                <li><a href="#">学习笔记</a></li>
+              </ul>
+            </li>
+			{% else %}
+			<li><a href="{% url 'posts-url' %}">技术文章</a></li>
+            <li><a href="{% url 'diaries-url' %}">心情日记</a>
+              <ul>
+                <li><a href="#">个人日记</a></li>
+                <li><a href="#">学习笔记</a></li>
+              </ul>
+            </li>
+			{% endif %}
+            <li><a href="#" title="待开发">给我留言</a></li>
+			{% if user.is_authenticated %}
+			<li><a href="{% url 'about-url' user.username %}">关于我</a>
+              <ul>
+                <li><a href="#">个人简介</a></li>
+                <li><a href="#">个人相册</a></li>
+              </ul>
+            </li>
+			<li><a href="{% url 'user_content-url' user.username %}">目录视图</a></li>
+			<!--<li><a href="{% url 'logout' %}?next=/">注销登录</a></li>-->
+			{% else %}
+			<li><a href="{% url 'content-url' %}">目录视图</a></li>
+			<li><a href="{% url 'login' %}?next={{ request.path }}">登录|注册</a></li>
+			{% endif %}
+          </ul>
+        </div>
+      </nav>
+      <SCRIPT type=text/javascript>
+	// Navigation Menu
+	$(function() {
+		$(".menu ul").css({display: "none"}); // Opera Fix
+		$(".menu li").hover(function(){
+			$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+		},function(){
+			$(this).find('ul:first').css({visibility: "hidden"});
+		});
+	});
+</SCRIPT> 
+    </div>
+  </header>

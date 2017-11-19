@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<body>
+  {% block title %} Nancy - 目录 {% endblock %}
+
+  {% block content %}
+  
+  <div class="jztop"></div>
+  
+  <div class="container">
+    <div class="bloglist f_l">
+	  {% if error_msg %}
+         <p>{{ error_msg }}</p>
+	  {% endif %}
+	  
+	  <h3 style="text-align:center; font-size:20px; font-family:微软雅黑; font-weight:bold;">目&emsp;录</h3>
+	  {% for post in post_list %}
+      <h3 style="font-size:14px;"><a href="{% url 'post-url' post.id %}" target="_blank">{{ post.title }}</a><span style="float:right;">{{ post.create_time | date:"Y-m-d H:i" }}</span></h3>
+	  {% empty %}
+	  <h3>暂无文章！</h3>
+      {% endfor %}
+	  
+	  {% if count > 30 %}
+	    {% include "pagination.html" %}
+	  {% endif %}
+	  
+    </div>
+	
+	{% include "page_sidebar.html" %}
+	
+  </div>
+  
+  <div class="jzend"></div>
+  {% endblock %}
+
+</body>

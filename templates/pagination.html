@@ -1,0 +1,30 @@
+<!--
+	{% if post_list.has_previous or post_list.has_next %}
+      <div class="pagelist" style="font-size:16px; font-family:'微软雅黑'; color:#000000;">
+          {% if post_list.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}上一页{% if post_list.has_previous %}</a>{% endif %}
+                |
+				<span><span style="color:red;">第 {{ page.number }} 页</span> | 共 {{ page.paginator.num_pages }} 页</span>
+				|
+          {% if post_list.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}下一页{% if post_list.has_next %}</a>{% endif %}
+      </div>
+      {% endif %}
+-->
+
+<div class="pagelist" style="font-size:16px; font-family:微软雅黑; color:#000000; background-color:#d0d0d0;">
+	{% if post_list.has_previous %}
+		<a href="?page={{ post_list.previous_page_number }}">< 上一页</a>
+	{% endif %}
+	<span>
+	{% for p in page_range %}
+		{% ifequal p post_list.number %}
+			<span class="current" style="background-color:#2894FF;">{{ p }}</span>
+		{% else %}
+			<a href="?page={{ p }}" title="第{{ p }}页">{{ p }}</a>
+		{% endifequal %}
+	{% endfor %}
+	</span>
+	{% if post_list.has_next %}
+		<a href="?page={{ post_list.next_page_number }}">下一页 > </a>
+	{% endif %}
+	<a>[第{{ post_list.number }}/{{ post_list.paginator.num_pages }}页]</a>  
+</div>  

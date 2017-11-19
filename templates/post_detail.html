@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<body>
+
+{% block title %} Nancy - {{ post.title }} {% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="con_content">
+    <div class="about_box">
+      <h2 class="nh1"><b><span>您现在的位置是：<a href="/">网站首页</a>>><a href="#">{{ post.category }}</a></span></b></h2>
+      <div class="dtxw box">
+        <li>
+          <div class="dttext f_l" style="font-size: 14px;">
+            <ul>
+              <h2>{{ post.title }}</h2>
+			  {{ post.create_time }} | 分类：<a href="{% url 'category-url' post.category.id %}">{{ post.category }}</a> | 标签：{% for tag in post.tags.all %} {{ tag.name }} {% endfor %}
+			  <br />
+			  <br />
+              <p>{{ post.body | safe | linebreaksbr }}</p>
+            </ul>
+          </div>
+		  <div class="xwpic f_r">
+		    <ul>
+			  <a href="#"><img src="{{ profile.user_avatar.url }}"></a>
+			  <br />
+			  <p style="text-align:center; font-size:18px;">{{ user.username }}</p>
+			</ul>
+		  </div>
+        </li>
+      </div>
+    </div>
+  </div>
+  <div class="blank"></div>
+  <!-- container代码 结束 -->
+</div>
+{% endblock %}
+
+</body>
