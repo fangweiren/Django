@@ -25,7 +25,7 @@ httplib2==0.8
 jieba==0.39
 language-selector==0.1
 louis==2.5.3
-lxml==3.3.3
+lxml==4.6.3
 oauthlib==0.6.1
 olefile==0.44
 onboard==1.0.0
